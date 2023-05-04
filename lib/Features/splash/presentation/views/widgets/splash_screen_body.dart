@@ -1,3 +1,4 @@
+import 'package:chatapp/core/utils/Constants.dart';
 import 'package:chatapp/core/utils/Routing.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +17,9 @@ class _SplashScreenBodyState extends State<SplashScreenBody> {
     super.initState();
     Future.delayed(
       const Duration(seconds: 3),
-      () => GoRouter.of(context).push(RouterBuild.kPhoneAuthenticationScreen),
+      () => GoRouter.of(context).push(user == null
+          ? RouterBuild.kPhoneAuthenticationScreen
+          : RouterBuild.kHomeScreen),
     );
   }
 

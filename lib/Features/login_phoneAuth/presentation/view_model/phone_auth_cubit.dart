@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'phone_auth_state.dart';
 
 class PhoneAuthCubit extends Cubit<PhoneAuthState> {
-   String? verificationId;
+  String? verificationId;
 
   PhoneAuthCubit() : super(PhoneAuthInitial());
 
@@ -68,9 +68,9 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
     User userdataFromFirebase = FirebaseAuth.instance.currentUser!;
     return userdataFromFirebase;
   }
-void changeOtpCode(code){
-  otpCode=code;
-  emit(ChangeOtpState());
-}
-}
 
+  void changeOtpCode(code) {
+    otpCode = code;
+    emit(ChangeOtpState());
+  }
+}

@@ -13,7 +13,6 @@ class PhoneAuthErrorState extends PhoneAuthState {
   final String message;
 
   PhoneAuthErrorState(this.message);
-
 }
 
 class PhoneAuthVerifiedState extends PhoneAuthState {}

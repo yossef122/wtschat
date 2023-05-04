@@ -1,9 +1,10 @@
-import 'package:chatapp/Features/login_phoneAuth/presentation/view_model/phone_auth_cubit.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_auth_cubit.dart';
 import 'package:chatapp/core/Widgets/LoadingWidget.dart';
 import 'package:chatapp/core/utils/Routing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:go_router/go_router.dart';
+import 'package:go_router/go_router.dart';
+
 
 class BuildPhoneNumberVerified extends StatelessWidget {
   const BuildPhoneNumberVerified({Key? key})
@@ -20,8 +21,8 @@ class BuildPhoneNumberVerified extends StatelessWidget {
           return loadingWidget(context);
         } else if (state is PhoneAuthVerifiedState) {
           // Navigator.pop(context);
-          // GoRouter.of(context)
-          //     .push(RouterBuild.kMapScreen/*, extra: phoneNumber*/);
+          GoRouter.of(context)
+              .push(RouterBuild.kHomeScreen/*, extra: phoneNumber*/);
         } else if (state is PhoneAuthErrorState) {
           // Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(

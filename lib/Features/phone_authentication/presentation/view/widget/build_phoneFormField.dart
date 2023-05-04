@@ -1,10 +1,9 @@
-import 'package:chatapp/Features/login_phoneAuth/presentation/view_model/CountryFlag.dart';
 import 'package:chatapp/core/utils/Colors.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:flutter/material.dart';
 
 class BuildPhoneFormField extends StatelessWidget {
-  const BuildPhoneFormField({Key? key}) : super(key: key);
+  BuildPhoneFormField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +14,11 @@ class BuildPhoneFormField extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                border: Border.all(color: MyColors.lightGrey)),
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                color: MyColors.lightGrey,
+              ),
+            ),
             child: Text(
               '${generateCountryFlag()}  +2',
               style: const TextStyle(color: Colors.black, fontSize: 18),
@@ -27,7 +29,7 @@ class BuildPhoneFormField extends StatelessWidget {
           width: 16,
         ),
         Expanded(
-          flex: 3,
+          flex: 2,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
@@ -66,4 +68,11 @@ class BuildPhoneFormField extends StatelessWidget {
       ],
     );
   }
+}
+
+String generateCountryFlag() {
+  String countryCode = 'eg';
+  String flag = countryCode.toUpperCase().replaceAllMapped(RegExp(r'[A-Z]'),
+      (match) => String.fromCharCode(match.group(0)!.codeUnitAt(0) + 127397));
+  return flag;
 }

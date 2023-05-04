@@ -32,14 +32,11 @@ class BuildPinCodeFields extends StatelessWidget {
       backgroundColor: Colors.blue.shade50,
       enableActiveFill: true,
       onCompleted: (codeFromUser) {
-        otpCode=codeFromUser;
-        print(otpCode);
-        // login(context,codeFromUser);
-        // BlocProvider.of<PhoneAuthCubit>(context).changeOtpCode(codeFromUser);
-        // print("Completed");
+        otpCode = codeFromUser;
+        // print(otpCode);
       },
       onChanged: (value) {
-        print(value);
+        // print(value);
       },
       appContext: context1,
     );

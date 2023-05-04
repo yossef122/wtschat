@@ -1,13 +1,12 @@
-import 'package:chatapp/Features/login_phoneAuth/presentation/view/widget/BuildIntroText_verify.dart';
-import 'package:chatapp/Features/login_phoneAuth/presentation/view/widget/BuildPhoneNumberVerified.dart';
-import 'package:chatapp/Features/login_phoneAuth/presentation/view/widget/BuildPinCodeFields.dart';
-import 'package:chatapp/Features/login_phoneAuth/presentation/view/widget/verified_button.dart';
-import 'package:chatapp/Features/login_phoneAuth/presentation/view_model/phone_auth_cubit.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/widget/BuildIntroText_verify.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/widget/BuildPhoneNumberVerified.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/widget/BuildPinCodeFields.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/widget/verified_button.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_auth_cubit.dart';
 import 'package:chatapp/core/utils/Constants.dart';
-import 'package:chatapp/core/utils/Routing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+
 
 class VerifyingCodeBody extends StatelessWidget {
   const VerifyingCodeBody({Key? key/*,required this.phoneNumber*/}) : super(key: key);
@@ -32,11 +31,10 @@ class VerifyingCodeBody extends StatelessWidget {
             text: 'Verify',
             onPressed: () {
               // loadingWidget(context);
-              // login(context,otpCode);
-              RouterBuild.router.push(RouterBuild.kHomeScreen);
+              login(context,otpCode);
             },
           ),
-          // const BuildPhoneNumberVerified()
+          const BuildPhoneNumberVerified()
         ],
       ),
     );

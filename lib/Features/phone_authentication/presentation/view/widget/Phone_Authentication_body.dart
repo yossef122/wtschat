@@ -1,7 +1,7 @@
-import 'package:chatapp/Features/login_phoneAuth/presentation/view/widget/build_introText.dart';
-import 'package:chatapp/Features/login_phoneAuth/presentation/view/widget/build_phoneFormField.dart';
-import 'package:chatapp/Features/login_phoneAuth/presentation/view/widget/verified_button.dart';
-import 'package:chatapp/Features/login_phoneAuth/presentation/view_model/phone_auth_cubit.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/widget/build_introText.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/widget/build_phoneFormField.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/widget/verified_button.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_auth_cubit.dart';
 import 'package:chatapp/core/Widgets/LoadingWidget.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:chatapp/core/utils/Routing.dart';
@@ -28,19 +28,19 @@ class PhoneAuthenticationScreenBody extends StatelessWidget {
               const SizedBox(
                 height: 110,
               ),
-              const BuildPhoneFormField(),
+              BuildPhoneFormField(),
               const SizedBox(
                 height: 70,
               ),
               VerifiedButton(
                 text: 'Next',
                 onPressed: () {
-                  // loadingWidget(context);
-                  // register(context,_phoneFormKey);
-                  GoRouter.of(context).push(RouterBuild.kVerifyingCode);
+                  loadingWidget(context);
+                  register(context,_phoneFormKey);
+                  // GoRouter.of(context).push(RouterBuild.kVerifyingCodeScreen);
                 },
               ),
-              // BuildPhoneNumberSubmited()
+              BuildPhoneNumberSubmited()
             ],
           ),
         ),
@@ -64,8 +64,8 @@ class BuildPhoneNumberSubmited extends StatelessWidget {
           return loadingWidget(context);
           } else if (state is PhoneAuthSuccessState) {
             Navigator.pop(context);
-            // GoRouter.of(context)
-            //   .push(RouterBuild.kVerifyingCodeScreen, extra: phoneNumber);
+            GoRouter.of(context)
+              .push(RouterBuild.kVerifyingCode, extra: phoneNumber);
         } else if (state is PhoneAuthErrorState) {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(

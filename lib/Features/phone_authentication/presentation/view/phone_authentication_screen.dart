@@ -1,4 +1,4 @@
-import 'package:chatapp/Features/login_phoneAuth/presentation/view/widget/Phone_Authentication_body.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/widget/Phone_Authentication_body.dart';
 import 'package:flutter/material.dart';
 
 class PhoneAuthenticationScreen extends StatelessWidget {

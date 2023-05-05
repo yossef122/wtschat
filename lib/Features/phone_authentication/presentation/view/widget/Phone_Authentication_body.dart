@@ -1,7 +1,8 @@
 import 'package:chatapp/Features/phone_authentication/presentation/view/widget/build_introText.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view/widget/build_phoneFormField.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view/widget/verified_button.dart';
-import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_auth_cubit.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_authentication/phone_auth_cubit.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_authentication/phone_auth_state.dart';
 import 'package:chatapp/core/Widgets/LoadingWidget.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:chatapp/core/utils/Routing.dart';

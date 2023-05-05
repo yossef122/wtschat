@@ -15,9 +15,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseAuth.instance.authStateChanges().listen((userAuth) {
-
     user =userAuth;
   });
+
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: defualtColor1(), // navigation bar color
     statusBarColor: defualtColor1(), // status bar color

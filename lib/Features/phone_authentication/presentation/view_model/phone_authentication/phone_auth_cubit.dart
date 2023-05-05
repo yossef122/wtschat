@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_authentication/phone_auth_state.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
-part 'phone_auth_state.dart';
 
 class PhoneAuthCubit extends Cubit<PhoneAuthState> {
    String? verificationId;

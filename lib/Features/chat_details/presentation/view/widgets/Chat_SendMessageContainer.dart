@@ -1,4 +1,3 @@
-// ignore_for_file: must_be_immutable
 
 import 'package:chatapp/Features/chat_details/presentation/view/widgets/chat_SendMessageTextFormField.dart';
 import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/emoji_change_cubit.dart';
@@ -6,6 +5,9 @@ import 'package:chatapp/core/utils/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+
+//ناقص responsive
 
 // ignore: must_be_immutable
 class SendMessageContainer extends StatelessWidget {
@@ -51,7 +53,6 @@ class SendMessageContainer extends StatelessWidget {
                         // cubit.emojiChange(!(showEmojiPicker));
                         cubit.emojiChange(showEmojiPicker);
                         cubit.keyboardChange(focusNode);
-                        print(showEmojiPicker);
                       },
                       icon: Icon(
                         Icons.emoji_emotions_outlined,
@@ -160,6 +161,7 @@ class AttachmentContainer extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class AttachmentItem extends StatelessWidget {
   AttachmentItem({
     Key? key,
@@ -195,7 +197,10 @@ class AttachmentItem extends StatelessWidget {
             Text(
               text!,
               style: const TextStyle(fontSize: 13),
-            )
+            ),
+            const SizedBox(
+              height: 5,
+            ),
           ],
         ),
       ),

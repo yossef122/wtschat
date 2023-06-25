@@ -43,7 +43,9 @@ class BuildPhoneFormField extends StatelessWidget {
                 letterSpacing: 2,
               ),
               autofocus: true,
+
               decoration: const InputDecoration(
+                alignLabelWithHint: true,
                 border: InputBorder.none,
                 hintText: '01111111111',
                 hintStyle:

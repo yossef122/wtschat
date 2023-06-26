@@ -23,11 +23,12 @@ class ChatMessagesContent extends StatelessWidget {
         child: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 10, left: 5, right: 7),
+              padding: EdgeInsets.only(top: 10, left: 10, right: 10),
               child: Text(
-                'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss',
+                'youssef helmy youssef helmy youssef helmy youssef helmy youssef helmy',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold
                 ),
               ),
             ),

@@ -11,6 +11,7 @@ class StoryStatusItem extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.only(
+          top: width * 0.025,
           left: width * 0.035,
           right: width * 0.035,
           bottom: height*0.02

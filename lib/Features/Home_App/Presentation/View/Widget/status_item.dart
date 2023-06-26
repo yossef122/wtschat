@@ -138,7 +138,7 @@ class MyStatusItem extends StatelessWidget {
                       EdgeInsets.only(top: height * 0.01, right: width * 0.03),
                   child: CircleAvatar(
                     radius: height * 0.03,
-                    backgroundColor: Colors.grey.withOpacity(0.5),
+                    backgroundColor: Colors.white.withOpacity(0.5),
                     child: IconButton(
                       onPressed: () {},
                       icon: Icon(
@@ -154,7 +154,7 @@ class MyStatusItem extends StatelessWidget {
                   ),
                   child: CircleAvatar(
                       radius: height * 0.03,
-                      backgroundColor: Colors.grey.withOpacity(0.5),
+                      backgroundColor: Colors.white.withOpacity(0.5),
                       child: IconButton(
                           onPressed: () {},
                           icon: Icon(

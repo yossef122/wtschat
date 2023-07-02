@@ -1,4 +1,6 @@
-import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/emoji_change_cubit.dart';
+// ignore_for_file: must_be_immutable
+
+import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/chat_cubit.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,18 +13,15 @@ class SendMessageTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
     return SizedBox(
       width: width * .5,
       // height: 100,
-      child: BlocBuilder<EmojiChangeCubit, EmojiChangeState>(
-
+      child: BlocBuilder<ChatCubitCubit, EmojiChangeState>(
         builder: (context, state) {
-        var cubit=EmojiChangeCubit.get(context);
+          var cubit = ChatCubitCubit.get(context);
           return TextFormField(
-
             onTap: () {
-              if(showEmojiPicker==true) {
+              if (showEmojiPicker == true) {
                 cubit.emojiChange(showEmojiPicker);
               }
               cubit.keyboardChange(focusNode);
@@ -32,7 +31,6 @@ class SendMessageTextFormField extends StatelessWidget {
             style: const TextStyle(
               color: Colors.black,
               letterSpacing: 2,
-
             ),
             maxLines: 10,
             minLines: 1,

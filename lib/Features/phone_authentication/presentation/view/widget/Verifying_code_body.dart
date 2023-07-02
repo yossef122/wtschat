@@ -18,10 +18,7 @@ class VerifyingCodeBody extends StatelessWidget {
       listener: (context, state) {
         if (state is PhoneAuthVerifiedState) {
           SignUserCubit.get(context).insertUserData(
-              name: 'ahmed',
-              photo: 'hie',
-              uId: user!.uid,
-              phone: phoneNumber!);
+              name: 'ahmed', photo: 'hie', uId: user!.uid, phone: phoneNumber!);
         }
       },
       child: Container(

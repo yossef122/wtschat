@@ -1,3 +1,4 @@
+import 'package:chatapp/Features/chat_details/data/Model/ChatModel.dart';
 import 'package:flutter/material.dart';
 
 class ChatMessagesContent extends StatelessWidget {
@@ -6,7 +7,6 @@ class ChatMessagesContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
     return Padding(
       padding: EdgeInsets.only(right: width * .2, left: width * .03),
       child: Container(
@@ -36,7 +36,7 @@ class ChatMessagesContent extends StatelessWidget {
               height: 15,
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 5,right: 10),
+              padding: const EdgeInsets.only(bottom: 5,right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: const [
@@ -49,7 +49,7 @@ class ChatMessagesContent extends StatelessWidget {
                     ),
 
                   ),
-                  Icon(Icons.check,color: Colors.grey,size: 13,)
+                  Icon(Icons.check,color: Colors.blue,size: 15,)
                 ],
               ),
             ),

@@ -1,3 +1,4 @@
+import 'package:chatapp/Features/phone_authentication/data/Model/UserData.dart';
 import 'package:chatapp/core/utils/Routing.dart';
 import 'package:chatapp/core/utils/assets.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,15 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeChat extends StatelessWidget {
-  const HomeChat({Key? key}) : super(key: key);
+  HomeChat({Key? key , required this.user}) : super(key: key);
 
+  // String? name;
+  UserData? user;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: (){
-        GoRouter.of(context).push(RouterBuild.kChatDetailsScreen);
+      onTap: () {
+        print("1 ${user!.phoneNumber}");
+        GoRouter.of(context).push(RouterBuild.kChatDetailsScreen,extra:user );
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 0, horizontal: width * .035),
@@ -28,7 +32,7 @@ class HomeChat extends StatelessWidget {
                 height: height * .07,
                 child: CircleAvatar(
                   radius: height * .037,
-                  backgroundImage:  const AssetImage(AppImage.chatPhoto),
+                  backgroundImage: const AssetImage(AppImage.chatPhoto),
                 ),
               ),
               const SizedBox(
@@ -46,7 +50,8 @@ class HomeChat extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              'Jo2',
+                              (user!.name)!,
+                              // 'Jo2',
                               style: TextStyle(
                                   fontSize: height * .02,
                                   color: Colors.blue,

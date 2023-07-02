@@ -132,16 +132,19 @@ class EditProfileItem extends StatelessWidget {
           ),
           const Spacer(),
           icon !=Icons.phone ?
-          Center(
-              child: Align(
-            alignment: Alignment.bottomRight,
-            child: Icon(
-              Icons.edit,
-              color: defualtColor2(),
-            ),
-          )
-              // ),
-              ) :Container()
+          Padding(
+            padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.03),
+            child: Center(
+                child: Align(
+              alignment: Alignment.bottomRight,
+              child: Icon(
+                Icons.edit,
+                color: defualtColor2(),
+              ),
+            )
+                // ),
+                ),
+          ) :Container()
         ],
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:chatapp/Features/chat_details/presentation/view/widgets/Chat_Appbar.dart';
 import 'package:chatapp/Features/chat_details/presentation/view/widgets/Chat_MessagesList.dart';
 import 'package:chatapp/Features/chat_details/presentation/view/widgets/Chat_SendMessage.dart';
-import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/emoji_change_cubit.dart';
+import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/chat_cubit.dart';
 import 'package:chatapp/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,8 +11,12 @@ class ChatDetailsScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<EmojiChangeCubit>(
-      create: (context) => EmojiChangeCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ChatCubitCubit>(
+          create: (context) => ChatCubitCubit(),
+        ),
+      ],
       child: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(

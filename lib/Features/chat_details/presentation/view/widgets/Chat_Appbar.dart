@@ -1,6 +1,8 @@
 import 'package:chatapp/core/styles/colors.dart';
+import 'package:chatapp/core/utils/Routing.dart';
 import 'package:chatapp/core/utils/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 
 class ChatAppbar extends StatelessWidget {
@@ -16,7 +18,9 @@ class ChatAppbar extends StatelessWidget {
         child: Row(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                GoRouter.of(context).push(RouterBuild.kHomeScreen);
+              },
               icon: const Icon(
                 Icons.arrow_back,
                 color: Colors.white,

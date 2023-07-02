@@ -18,6 +18,8 @@ class RouterBuild {
   static var kProfilePhotoScreen = '/ProfilePhotoScreen';
   static var kChatDetailsScreen = '/ChatDetailsScreen';
 
+  // static var kLayoutOutScreen = '/ChatDetailsScreen';
+
   static final GoRouter router = GoRouter(
     routes: [
       GoRoute(

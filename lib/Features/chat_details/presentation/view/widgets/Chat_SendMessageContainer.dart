@@ -1,6 +1,6 @@
 
 import 'package:chatapp/Features/chat_details/presentation/view/widgets/chat_SendMessageTextFormField.dart';
-import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/emoji_change_cubit.dart';
+import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/chat_cubit.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,9 +19,9 @@ class SendMessageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return BlocBuilder<EmojiChangeCubit, EmojiChangeState>(
+    return BlocBuilder<ChatCubitCubit, EmojiChangeState>(
       builder: (context, state) {
-        var cubit = EmojiChangeCubit.get(context);
+        var cubit = ChatCubitCubit.get(context);
         return WillPopScope(
           onWillPop: () {
             if (showEmojiPicker == true) {

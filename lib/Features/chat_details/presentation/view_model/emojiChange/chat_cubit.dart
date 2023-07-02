@@ -2,17 +2,44 @@ import 'package:bloc/bloc.dart';
 import 'package:chatapp/Features/chat_details/data/Model/ChatModel.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-part 'message_details_state.dart';
+part 'chat_state.dart';
 
-class MessageDetailsCubit extends Cubit<MessageDetailsState> {
-  MessageDetailsCubit() : super(MessageDetailsInitial());
+class ChatCubitCubit extends Cubit<EmojiChangeState> {
+  ChatCubitCubit() : super(EmojiChangeInitial());
 
-  //Chat Details Cubit
+  static ChatCubitCubit get(context) => BlocProvider.of(context);
 
-  void sendMessage({String? receiverId, String? text, String? dateTime}) {
+  emojiChange(bool emojiPicker) {
+    if (emojiPicker == true) {
+      showEmojiPicker = false;
+    } else {
+      showEmojiPicker = true;
+    }
+    // showEmojiPicker = !EmojiPicker;
+    emit(EmojiChangeStateSuccess());
+  }
+
+  keyboardChange(FocusNode focusNode) {
+    if (focusNode.hasFocus) {
+      showKeyboard = true;
+    } else {
+      showKeyboard = false;
+    }
+    // showEmojiPicker = !EmojiPicker;
+    emit(EmojiChangeStateSuccess());
+  }
+
+
+
+  /**/
+  void sendMessage(
+      {required String? receiverId,
+        required String? text,
+        required String? dateTime}) {
     ChatModel chatModel = ChatModel(
         text: text,
         senderId: user!.uid,
@@ -26,9 +53,9 @@ class MessageDetailsCubit extends Cubit<MessageDetailsState> {
         .collection('messages')
         .add(chatModel.toMap())
         .then((value) {
-      emit(GetMessageSuccessState());
+      emit(SendMessageSuccessState());
     }).catchError((error) {
-      emit(GetMessageErrorState());
+      emit(SendMessageErrorState());
     });
 
     FirebaseFirestore.instance
@@ -39,9 +66,9 @@ class MessageDetailsCubit extends Cubit<MessageDetailsState> {
         .collection('messages')
         .add(chatModel.toMap())
         .then((value) {
-      emit(GetMessageSuccessState());
+      emit(SendMessageSuccessState());
     }).catchError((error) {
-      emit(GetMessageErrorState());
+      emit(SendMessageErrorState());
     });
   }
 
@@ -66,5 +93,6 @@ class MessageDetailsCubit extends Cubit<MessageDetailsState> {
       emit(GetAllMessageSuccessState());
     });
   }
+
 
 }

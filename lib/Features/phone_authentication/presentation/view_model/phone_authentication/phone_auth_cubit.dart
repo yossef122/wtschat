@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_authentication/phone_auth_state.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 
@@ -9,6 +10,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
    String? verificationId;
 
   PhoneAuthCubit() : super(PhoneAuthInitial());
+   static PhoneAuthCubit get(context) => BlocProvider.of(context);
 
   Future<void> submitPhoneNumber(String? phoneNumber) async {
     await FirebaseAuth.instance.verifyPhoneNumber(

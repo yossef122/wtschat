@@ -2,7 +2,7 @@
 
 import 'package:chatapp/Features/chat_details/presentation/view/widgets/Chat_EmojiPickerWidget.dart';
 import 'package:chatapp/Features/chat_details/presentation/view/widgets/Chat_SendMessageContainer.dart';
-import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/emoji_change_cubit.dart';
+import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/chat_cubit.dart';
 import 'package:chatapp/core/styles/colors.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:chatapp/core/utils/assets.dart';
@@ -18,16 +18,14 @@ class ChatSendMessage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return BlocConsumer<EmojiChangeCubit, EmojiChangeState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+    return BlocConsumer<ChatCubitCubit, EmojiChangeState>(
+      listener: (context, state) {},
       builder: (context, state) {
         return Container(
-          height:showEmojiPicker?height*.37: height*.07,
+          height: showEmojiPicker ? height * .37 : height * .07,
           decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage(AppImage.wtsBackground))
-          ),
+              image:
+                  DecorationImage(image: AssetImage(AppImage.wtsBackground))),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -38,19 +36,36 @@ class ChatSendMessage extends StatelessWidget {
                     textFormFieldController: textEditingController,
                   ),
                   const Spacer(),
-                  CircleAvatar(
-                    radius: width * .058,
-                    backgroundColor: defualtColor3(),
-                    child: IconButton(
-                      onPressed: () {
-                        // EmojiPickerWidget();
-                      },
-                      icon: const Icon(
-                        Icons.mic,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
+                  textEditingController.hasListeners != true
+                      ? CircleAvatar(
+                          radius: width * .058,
+                          backgroundColor: defualtColor3(),
+                          child: IconButton(
+                            onPressed: () {
+                              // EmojiPickerWidget();
+                            },
+                            icon: const Icon(
+                              Icons.mic,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        )
+                      : CircleAvatar(
+                          radius: width * .058,
+                          backgroundColor: defualtColor3(),
+                          child: IconButton(
+                            onPressed: () {
+                              ChatCubitCubit.get(context).sendMessage(
+                                  receiverId: '2Nisa8EqKUWx8Jj5Ra4TPPFmI2o2',
+                                  text: textEditingController.text,
+                                  dateTime: DateTime.now().toString());
+                            },
+                            icon: const Icon(
+                              Icons.send,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
                 ],
               ),
               showEmojiPicker == true

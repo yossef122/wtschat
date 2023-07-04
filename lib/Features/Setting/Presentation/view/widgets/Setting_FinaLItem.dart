@@ -9,27 +9,25 @@ class SettingFinalIem extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.only(top: height * .02, left: width * .05),
-      child: Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'from',
-              style:
-                  TextStyle(fontSize: height * .018, color: Colors.grey[700]),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'from',
+            style:
+                TextStyle(fontSize: height * .018, color: Colors.grey[700]),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            'J A',
+            style: TextStyle(
+              fontSize: height * .028,
+              color: Colors.black,
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              'J A',
-              style: TextStyle(
-                fontSize: height * .028,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

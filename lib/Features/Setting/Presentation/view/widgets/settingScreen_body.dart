@@ -30,9 +30,9 @@ class SettingScreenBody extends StatelessWidget {
             color: Colors.grey[200],
           ),
           const SettingFinalIem(),
-          const SizedBox(
-            height: 25,
-          ),
+          // const SizedBox(
+          //   height: 25,
+          // ),
         ],
       ),
     );

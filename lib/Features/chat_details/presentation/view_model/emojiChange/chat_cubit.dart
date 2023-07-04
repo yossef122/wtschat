@@ -33,13 +33,11 @@ class ChatCubit extends Cubit<ChatState> {
     emit(EmojiChangeStateSuccess());
   }
 
-
-
   /**/
   void sendMessage(
       {required String? receiverId,
-        required String? text,
-        required String? dateTime}) {
+      required String? text,
+      required String? dateTime}) {
     ChatModel chatModel = ChatModel(
         text: text,
         senderId: user!.uid,
@@ -75,7 +73,7 @@ class ChatCubit extends Cubit<ChatState> {
   List<ChatModel> messages = [];
 
   void getMessage({
-   required String? receiverId,
+    required String? receiverId,
   }) {
     FirebaseFirestore.instance
         .collection('users')
@@ -93,6 +91,4 @@ class ChatCubit extends Cubit<ChatState> {
       emit(GetAllMessageSuccessState());
     });
   }
-
-
 }

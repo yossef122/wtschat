@@ -9,9 +9,7 @@ class ListViewOfHomeChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ChatUsersCubit, ChatUsersState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return SafeArea(
           child: Padding(

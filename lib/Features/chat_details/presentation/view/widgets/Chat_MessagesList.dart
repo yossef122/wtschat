@@ -6,32 +6,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatMessagesList extends StatelessWidget {
-  const ChatMessagesList({Key? key}) : super(key: key);
+  ChatMessagesList({Key? key, required this.receiverId}) : super(key: key);
+  String? receiverId;
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double height = MediaQuery.of(context).size.height;
 
-    return BlocBuilder<ChatCubitCubit, EmojiChangeState>(
+    return BlocBuilder<ChatCubit, ChatState>(
       builder: (context, state) {
         return SizedBox(
-          height: showEmojiPicker ||focusNode.hasFocus ? height * .48 : height * .8,
+          height: showEmojiPicker || focusNode.hasFocus
+              ? height * .48
+              : height * .8,
           // height: height * .8,
           child: ListView.separated(
             shrinkWrap: true,
             padding: const EdgeInsets.only(bottom: 5),
             itemBuilder: (context, index) {
-              return const ChatMessagesContent();
+              return  ChatMessagesContent(receiverId: receiverId, chatModel: ChatCubit.get(context).messages[index],);
             },
             separatorBuilder: (context, index) {
               return const SizedBox(
                 height: 10,
               );
             },
-            itemCount: 20,
+            itemCount: ChatCubit.get(context).messages.length,
           ),
         );
       },

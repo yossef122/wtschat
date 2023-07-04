@@ -16,9 +16,9 @@ class SendMessageTextFormField extends StatelessWidget {
     return SizedBox(
       width: width * .5,
       // height: 100,
-      child: BlocBuilder<ChatCubitCubit, EmojiChangeState>(
+      child: BlocBuilder<ChatCubit, ChatState>(
         builder: (context, state) {
-          var cubit = ChatCubitCubit.get(context);
+          var cubit = ChatCubit.get(context);
           return TextFormField(
             onTap: () {
               if (showEmojiPicker == true) {

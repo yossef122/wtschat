@@ -11,3 +11,4 @@ FocusNode focusNode=FocusNode();
 String? otpCode;
 
 User?user;
+String?receiverUserId;

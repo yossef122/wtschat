@@ -64,12 +64,13 @@ class RouterBuild {
           return const ProfilePhotoScreen();
         },
       ),
-      GoRoute(
+      /*GoRoute(
         path: kChatDetailsScreen,
         builder: (context, state) {
-          return const ChatDetailsScreen();
+          // print(state.path['uId']);
+          return  const ChatDetailsScreen();
         },
-      ),
+      ),*/
     ],
   );
 }

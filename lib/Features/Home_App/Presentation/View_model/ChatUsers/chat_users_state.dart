@@ -15,3 +15,5 @@ class GetAllUsersErrorState extends ChatUsersState {
     required this.error
 });
 }
+
+class ChangeReceiverSuccessState extends ChatUsersState {}

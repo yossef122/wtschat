@@ -5,6 +5,7 @@ import 'package:chatapp/Features/Home_App/Presentation/View/StoryScreen.dart';
 import 'package:chatapp/Features/Home_App/Presentation/View/Widget/HomeScreen_appbar.dart';
 import 'package:chatapp/Features/Home_App/Presentation/View/Widget/tabBar_indicator.dart';
 import 'package:chatapp/Features/Home_App/Presentation/View_model/ChatUsers/chat_users_cubit.dart';
+import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/chat_cubit.dart';
 import 'package:chatapp/core/styles/colors.dart';
 import 'package:chatapp/core/utils/WebService_locator.dart';
 import 'package:flutter/material.dart';
@@ -15,13 +16,14 @@ class HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    return BlocProvider<ChatUsersCubit>.value(
-      value: getIt.get<ChatUsersCubit>(),
-      child:  DefaultTabController(
+    var height = MediaQuery.of(context).size.height;
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ChatUsersCubit>.value(value: getIt.get<ChatUsersCubit>()),
+        BlocProvider<ChatCubit>.value(value: getIt.get<ChatCubit>()),
+
+      ],
+      child: DefaultTabController(
         length: 4,
         initialIndex: 0,
         child: Column(
@@ -49,7 +51,6 @@ class HomeScreenBody extends StatelessWidget {
             ),
           ],
         ),
-
       ),
     );
   }

@@ -8,10 +8,10 @@ import 'package:meta/meta.dart';
 
 part 'chat_state.dart';
 
-class ChatCubitCubit extends Cubit<EmojiChangeState> {
-  ChatCubitCubit() : super(EmojiChangeInitial());
+class ChatCubit extends Cubit<ChatState> {
+  ChatCubit() : super(EmojiChangeInitial());
 
-  static ChatCubitCubit get(context) => BlocProvider.of(context);
+  static ChatCubit get(context) => BlocProvider.of(context);
 
   emojiChange(bool emojiPicker) {
     if (emojiPicker == true) {
@@ -75,7 +75,7 @@ class ChatCubitCubit extends Cubit<EmojiChangeState> {
   List<ChatModel> messages = [];
 
   void getMessage({
-    String? receiverId,
+   required String? receiverId,
   }) {
     FirebaseFirestore.instance
         .collection('users')

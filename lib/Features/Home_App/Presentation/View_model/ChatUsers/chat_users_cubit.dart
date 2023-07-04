@@ -12,7 +12,6 @@ class ChatUsersCubit extends Cubit<ChatUsersState> {
 
   static ChatUsersCubit get(context) => BlocProvider.of(context);
 
-
   List<UserData> allUsers = [];
 
   void getAllUsers() {
@@ -31,5 +30,10 @@ class ChatUsersCubit extends Cubit<ChatUsersState> {
         emit(GetAllUsersErrorState(error: error.toString()));
       });
     }
+  }
+
+  void changeReceiverUserId(String receiver) {
+    receiverUserId = receiver;
+    emit(ChangeReceiverSuccessState());
   }
 }

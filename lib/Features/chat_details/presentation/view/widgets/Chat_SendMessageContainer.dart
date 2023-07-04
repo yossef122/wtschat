@@ -19,9 +19,9 @@ class SendMessageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return BlocBuilder<ChatCubitCubit, EmojiChangeState>(
+    return BlocBuilder<ChatCubit, ChatState>(
       builder: (context, state) {
-        var cubit = ChatCubitCubit.get(context);
+        var cubit = ChatCubit.get(context);
         return WillPopScope(
           onWillPop: () {
             if (showEmojiPicker == true) {

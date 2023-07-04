@@ -10,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatSendMessage extends StatelessWidget {
-  ChatSendMessage({Key? key}) : super(key: key);
+  ChatSendMessage({Key? key, required this.receiverId}) : super(key: key);
+  String? receiverId;
   TextEditingController textEditingController = TextEditingController();
 
   @override
@@ -18,7 +19,7 @@ class ChatSendMessage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return BlocConsumer<ChatCubitCubit, EmojiChangeState>(
+    return BlocConsumer<ChatCubit, ChatState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Container(
@@ -55,8 +56,8 @@ class ChatSendMessage extends StatelessWidget {
                           backgroundColor: defualtColor3(),
                           child: IconButton(
                             onPressed: () {
-                              ChatCubitCubit.get(context).sendMessage(
-                                  receiverId: '2Nisa8EqKUWx8Jj5Ra4TPPFmI2o2',
+                              ChatCubit.get(context).sendMessage(
+                                  receiverId: receiverId,
                                   text: textEditingController.text,
                                   dateTime: DateTime.now().toString());
                             },

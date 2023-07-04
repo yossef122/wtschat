@@ -1,19 +1,25 @@
 import 'package:chatapp/Features/chat_details/data/Model/ChatModel.dart';
+import 'package:chatapp/core/styles/colors.dart';
+import 'package:chatapp/core/utils/Constants.dart';
 import 'package:flutter/material.dart';
 
 class ChatMessagesContent extends StatelessWidget {
-  const ChatMessagesContent({Key? key}) : super(key: key);
+  ChatMessagesContent({Key? key, required this.receiverId,required this.chatModel}) : super(key: key);
+  String? receiverId;
+  ChatModel? chatModel;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.only(right: width * .2, left: width * .03),
+      padding: user!.uid == chatModel!.senderId
+          ? EdgeInsets.only(right: width * .2, left: width * .03)
+          : EdgeInsets.only(right: width * .03, left: width * .2),
       child: Container(
         width: 10,
         // height: 200,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color:user!.uid == chatModel!.senderId? defualtColor3():Colors.grey[200]!,
           border: Border.all(
             width: 1,
             color: Colors.grey[200]!,
@@ -22,34 +28,33 @@ class ChatMessagesContent extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+             Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
               child: Text(
-                'youssef helmy youssef helmy youssef helmy youssef helmy youssef helmy',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold
-                ),
+                  chatModel!.text!,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(
               height: 15,
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 5,right: 10),
+              padding: const EdgeInsets.only(bottom: 5, right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
+                children:  [
                   Text(
-                    '10:13 AM',
-                    style: TextStyle(
+                    chatModel!.dateTime!,
+                    style: const TextStyle(
                       fontSize: 13,
                       color: Colors.grey,
-
                     ),
-
                   ),
-                  Icon(Icons.check,color: Colors.blue,size: 15,)
+                  const Icon(
+                    Icons.check,
+                    color: Colors.blue,
+                    size: 15,
+                  )
                 ],
               ),
             ),

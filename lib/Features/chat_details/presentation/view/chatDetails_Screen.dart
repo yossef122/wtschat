@@ -2,12 +2,13 @@ import 'package:chatapp/Features/chat_details/presentation/view/widgets/chatDeta
 import 'package:flutter/material.dart';
 
 class ChatDetailsScreen extends StatelessWidget {
-  const ChatDetailsScreen({Key? key}) : super(key: key);
+   ChatDetailsScreen({Key? key, required this.receiverId}) : super(key: key);
+  String? receiverId;
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ChatDetailsScreenBody(),
+    return  Scaffold(
+      body: ChatDetailsScreenBody(receiverId: receiverId,),
     );
   }
 }

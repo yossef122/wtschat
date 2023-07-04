@@ -1,14 +1,14 @@
 part of 'chat_cubit.dart';
 
 @immutable
-abstract class EmojiChangeState {}
+abstract class ChatState {}
 
-class EmojiChangeInitial extends EmojiChangeState {}
+class EmojiChangeInitial extends ChatState {}
 
-class EmojiChangeStateSuccess extends EmojiChangeState {}
+class EmojiChangeStateSuccess extends ChatState {}
 
-class SendMessageSuccessState extends EmojiChangeState {}
+class SendMessageSuccessState extends ChatState {}
 
-class SendMessageErrorState extends EmojiChangeState {}
+class SendMessageErrorState extends ChatState {}
 
-class GetAllMessageSuccessState extends EmojiChangeState {}
+class GetAllMessageSuccessState extends ChatState {}

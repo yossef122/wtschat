@@ -2,20 +2,22 @@ import 'package:chatapp/Features/chat_details/presentation/view/widgets/Chat_App
 import 'package:chatapp/Features/chat_details/presentation/view/widgets/Chat_MessagesList.dart';
 import 'package:chatapp/Features/chat_details/presentation/view/widgets/Chat_SendMessage.dart';
 import 'package:chatapp/Features/chat_details/presentation/view_model/emojiChange/chat_cubit.dart';
+import 'package:chatapp/core/utils/WebService_locator.dart';
 import 'package:chatapp/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatDetailsScreenBody extends StatelessWidget {
-  const ChatDetailsScreenBody({Key? key}) : super(key: key);
+   ChatDetailsScreenBody({Key? key, required this.receiverId})
+      : super(key: key);
+  String? receiverId;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ChatCubitCubit>(
-          create: (context) => ChatCubitCubit(),
-        ),
+        BlocProvider<ChatCubit>.value(value: getIt.get<ChatCubit>()),
+
       ],
       child: Container(
         decoration: const BoxDecoration(
@@ -31,8 +33,8 @@ class ChatDetailsScreenBody extends StatelessWidget {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  const ChatMessagesList(),
-                  ChatSendMessage(),
+                  ChatMessagesList(receiverId: receiverId,),
+                  ChatSendMessage(receiverId: receiverId,),
                 ],
               ),
             ),

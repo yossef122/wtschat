@@ -6,8 +6,10 @@ import 'package:chatapp/Features/phone_authentication/presentation/view_model/Si
 import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_authentication/phone_auth_cubit.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view_model/phone_authentication/phone_auth_state.dart';
 import 'package:chatapp/core/utils/Constants.dart';
+import 'package:chatapp/core/utils/Routing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class VerifyingCodeBody extends StatelessWidget {
   const VerifyingCodeBody({Key? key}) : super(key: key);
@@ -15,12 +17,7 @@ class VerifyingCodeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<PhoneAuthCubit, PhoneAuthState>(
-      listener: (context, state) {
-        if (state is PhoneAuthVerifiedState) {
-          SignUserCubit.get(context).insertUserData(
-              name: 'ahmed', photo: 'hie', uId: user!.uid, phone: phoneNumber!);
-        }
-      },
+      listener: (context, state) {},
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 88, horizontal: 16),
         child: Column(

@@ -3,7 +3,7 @@ import 'package:chatapp/core/utils/Constants.dart';
 import 'package:flutter/material.dart';
 
 class BuildPhoneFormField extends StatelessWidget {
-  BuildPhoneFormField({Key? key}) : super(key: key);
+  const BuildPhoneFormField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,6 @@ class BuildPhoneFormField extends StatelessWidget {
                 letterSpacing: 2,
               ),
               autofocus: true,
-
               decoration: const InputDecoration(
                 alignLabelWithHint: true,
                 border: InputBorder.none,

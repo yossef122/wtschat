@@ -3,6 +3,7 @@ import 'package:chatapp/Features/Home_App/Presentation/View/HomeScreen.dart';
 import 'package:chatapp/Features/Profile_photo/presentation/view/Profile_photo_screen.dart';
 import 'package:chatapp/Features/Setting/Presentation/view/setting_screen.dart';
 import 'package:chatapp/Features/chat_details/presentation/view/chatDetails_Screen.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/ProfileScreen.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view/Verifying_code.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view/phone_authentication_screen.dart';
 import 'package:chatapp/Features/splash/presentation/views/splash.dart';
@@ -10,12 +11,14 @@ import 'package:go_router/go_router.dart';
 
 class RouterBuild {
   static var kSplashScreen = '/';
+  // static var kSplashScreen = '/SplashScreen';
   static var kVerifyingCode = '/VerifyingCode';
   static var kPhoneAuthenticationScreen = '/PhoneAuthenticationScreen';
   static var kHomeScreen = '/HomeScreen';
   static var kCallScreen = '/CallScreen';
   static var kSettingScreen = '/SettingScreen';
   static var kProfilePhotoScreen = '/ProfilePhotoScreen';
+  static var kSignInProfileScreen = '/SignInProfileScreen';
   static var kChatDetailsScreen = '/ChatDetailsScreen';
 
   // static var kLayoutOutScreen = '/ChatDetailsScreen';
@@ -62,6 +65,12 @@ class RouterBuild {
         path: kProfilePhotoScreen,
         builder: (context, state) {
           return const ProfilePhotoScreen();
+        },
+      ),
+      GoRoute(
+        path: kSignInProfileScreen,
+        builder: (context, state) {
+          return const SignInProfileScreen();
         },
       ),
       /*GoRoute(

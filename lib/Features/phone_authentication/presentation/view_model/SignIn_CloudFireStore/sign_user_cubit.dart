@@ -13,6 +13,7 @@ class SignUserCubit extends Cubit<SignUserState> {
     required String photo,
     required String uId,
     required String phone,
+    required String bio,
   }) {
     emit(UserCreateLoadingStates());
     UserData model = UserData(
@@ -20,11 +21,38 @@ class SignUserCubit extends Cubit<SignUserState> {
       uId: uId,
       phoneNumber: phone,
       personalPhoto: photo,
+      bio: bio,
     );
     FirebaseFirestore.instance
         .collection('users')
         .doc(uId)
         .set(model.toMap())
+        .then((value) {
+      emit(UserCreateSuccessStates());
+    }).catchError((error) {
+      emit(UserCreateErrorStates(error.toString()));
+    });
+  }
+
+  void editUserData({
+    required String name,
+    required String photo,
+    required String uId,
+    required String phone,
+    required String bio,
+  }) {
+    emit(UserCreateLoadingStates());
+    UserData model = UserData(
+      name: name,
+      uId: uId,
+      phoneNumber: phone,
+      personalPhoto: photo,
+      bio: bio,
+    );
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .update(model.toMap())
         .then((value) {
       emit(UserCreateSuccessStates());
     }).catchError((error) {

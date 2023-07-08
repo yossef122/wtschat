@@ -23,7 +23,7 @@ class BuildPhoneNumberVerified extends StatelessWidget {
         } else if (state is PhoneAuthVerifiedState) {
           // Navigator.pop(context);
           GoRouter.of(context)
-              .push(RouterBuild.kHomeScreen/*, extra: phoneNumber*/);
+              .push(RouterBuild.kSignInProfileScreen/*, extra: phoneNumber*/);
         } else if (state is PhoneAuthErrorState) {
           // Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(

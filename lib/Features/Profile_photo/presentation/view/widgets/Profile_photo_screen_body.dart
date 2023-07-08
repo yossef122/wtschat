@@ -57,8 +57,8 @@ class EditProfileList extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return ListView.separated(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         itemBuilder: (context, index) {
           return EditProfileItem(
             icon: editProfileIcon[index],
@@ -68,7 +68,7 @@ class EditProfileList extends StatelessWidget {
         },
         separatorBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.only(left: width * .07,top: 5 ,bottom: 5),
+            padding: EdgeInsets.only(left: width * .07, top: 5, bottom: 5),
             child: Container(
               color: Colors.grey[300],
               width: double.infinity,
@@ -99,7 +99,7 @@ class EditProfileItem extends StatelessWidget {
       padding: EdgeInsets.only(top: height * .01, left: width * .07),
       child: Row(
         children: [
-           Center(
+          Center(
             child: Icon(
               icon,
               color: Colors.grey,
@@ -131,21 +131,73 @@ class EditProfileItem extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          icon !=Icons.phone ?
-          Padding(
-            padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.03),
-            child: Center(
-                child: Align(
-              alignment: Alignment.bottomRight,
-              child: Icon(
-                Icons.edit,
-                color: defualtColor2(),
-              ),
-            )
-                // ),
-                ),
-          ) :Container()
+          icon != Icons.phone
+              ? Padding(
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width * .03),
+                  child: Center(
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.edit,
+                          color: defualtColor2(),
+                        ),
+                        onPressed: () {
+                          showModalBottomSheet(
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (builder) => AttachmentContainer(
+                              textFormFieldLabel: upperText,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                )
+              : Container()
         ],
+      ),
+    );
+  }
+}
+
+class AttachmentContainer extends StatelessWidget {
+  AttachmentContainer({Key? key, required this.textFormFieldLabel})
+      : super(key: key);
+  String? textFormFieldLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    return Padding(
+      padding: EdgeInsets.only(bottom: height * .374),
+      child: SizedBox(
+        height: 150,
+        width: MediaQuery.of(context).size.width,
+        child: Card(
+          margin: const EdgeInsets.all(20),
+          child: Padding(
+            padding: const EdgeInsets.all(0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: 10, left: 10),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        labelText: textFormFieldLabel,
+                        prefix: const SizedBox(width: 10),
+                        hintText: "Enter your $textFormFieldLabel",
+                        disabledBorder: InputBorder.none),
+                  ),
+                ),
+                TextButton(onPressed: () {}, child: const Text("save"))
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

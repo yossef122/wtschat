@@ -24,7 +24,10 @@ class ChatMessagesList extends StatelessWidget {
             shrinkWrap: true,
             padding: const EdgeInsets.only(bottom: 5),
             itemBuilder: (context, index) {
-              return  ChatMessagesContent(receiverId: receiverId, chatModel: ChatCubit.get(context).messages[index],);
+              return ChatMessagesContent(
+                receiverId: receiverId,
+                chatModel: ChatCubit.get(context).messages[index],
+              );
             },
             separatorBuilder: (context, index) {
               return const SizedBox(

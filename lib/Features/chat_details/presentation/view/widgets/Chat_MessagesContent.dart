@@ -3,6 +3,7 @@ import 'package:chatapp/core/styles/colors.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ChatMessagesContent extends StatelessWidget {
   ChatMessagesContent({Key? key, required this.receiverId,required this.chatModel}) : super(key: key);
   String? receiverId;
@@ -44,7 +45,7 @@ class ChatMessagesContent extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children:  [
                   Text(
-                    chatModel!.dateTime!,
+                    returnTime(chatModel!.dateTime!),
                     style: const TextStyle(
                       fontSize: 13,
                       color: Colors.grey,
@@ -63,4 +64,21 @@ class ChatMessagesContent extends StatelessWidget {
       ),
     );
   }
+}
+String returnTime(String date){
+ var time= date.split(" ")[1];
+ time = time.substring(0,5);
+ if(int.parse(time.substring(0,2))>12){
+   var hour = (int.parse(time.substring(0,2))-12).toString() ;
+   var minute = time.substring(2,5);
+   time = hour +minute;
+  return time;
+ }else if(int.parse(time.substring(0,2))==0){
+   var hour = (int.parse(time.substring(0,2))+12).toString() ;
+   var minute = time.substring(2,5);
+   time = hour +minute;
+   return time;
+ }else{
+   return time.substring(0,5);
+ }
 }

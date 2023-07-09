@@ -1,16 +1,20 @@
+import 'package:chatapp/Features/Home_App/Presentation/View/HomeScreen.dart';
 import 'package:chatapp/core/styles/colors.dart';
-import 'package:chatapp/core/utils/Routing.dart';
-import 'package:chatapp/core/utils/assets.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
+// import 'package:chatapp/core/utils/Routing.dart';
+import 'package:chatapp/core/utils/assets.dart';
+import 'package:chatapp/core/utils/functions.dart';
+import 'package:flutter/material.dart';
+// import 'package:go_router/go_router.dart';
 
 class ChatAppbar extends StatelessWidget {
-  const ChatAppbar({Key? key}) : super(key: key);
+  ChatAppbar({Key? key, required this.receiverName}) : super(key: key);
+  String? receiverName;
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Container(
         height: height * .09,
@@ -19,7 +23,8 @@ class ChatAppbar extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () {
-                GoRouter.of(context).push(RouterBuild.kHomeScreen);
+                navigator(context, const HomeScreen());
+                // GoRouter.of(context).push(RouterBuild.kHomeScreen);
               },
               icon: const Icon(
                 Icons.arrow_back,
@@ -39,15 +44,19 @@ class ChatAppbar extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Jo2',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                      color: Colors.white),
+              children: [
+                Container(
+                 width: width * .5,
+                  child: Text(
+                    receiverName!,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: Colors.white,
+                        overflow: TextOverflow.ellipsis),
+                  ),
                 ),
-                Text(
+                const Text(
                   'Message yourself',
                   style: TextStyle(
                       fontWeight: FontWeight.normal,

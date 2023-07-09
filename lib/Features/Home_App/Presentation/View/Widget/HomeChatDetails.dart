@@ -26,7 +26,7 @@ class HomeChat extends StatelessWidget {
         ChatCubit.get(context).getMessage(receiverId: user!.uId);
 
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) =>  ChatDetailsScreen(receiverId: user!.uId,)),
+          MaterialPageRoute(builder: (context) =>  ChatDetailsScreen(receiverId: user!.uId, receiverName: user!.name,)),
         );
         // GoRouter.of(context).push(RouterBuild.kChatDetailsScreen, extra: user);
       },

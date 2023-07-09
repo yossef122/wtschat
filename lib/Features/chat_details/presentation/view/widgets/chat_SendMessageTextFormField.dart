@@ -19,40 +19,44 @@ class SendMessageTextFormField extends StatelessWidget {
       child: BlocBuilder<ChatCubit, ChatState>(
         builder: (context, state) {
           var cubit = ChatCubit.get(context);
-          return TextFormField(
-            onTap: () {
-              if (showEmojiPicker == true) {
-                cubit.emojiChange(showEmojiPicker);
-              }
-              cubit.keyboardChange(focusNode);
-            },
-            focusNode: focusNode,
-            controller: textFormFieldController,
-            style: const TextStyle(
-              color: Colors.black,
-              letterSpacing: 2,
-            ),
-            maxLines: 10,
-            minLines: 1,
-            // autofocus: true,
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Message',
-              hintStyle: TextStyle(
-                color: Colors.black,
+          return Wrap(
+            children: [
+              TextFormField(
+                onTap: () {
+                  if (showEmojiPicker == true) {
+                    cubit.emojiChange(showEmojiPicker);
+                  }
+                  cubit.keyboardChange(focusNode);
+                },
+                focusNode: focusNode,
+                controller: textFormFieldController,
+                style: const TextStyle(
+                  color: Colors.black,
+                  letterSpacing: 2,
+                ),
+                maxLines: 10,
+                minLines: 1,
+                // autofocus: true,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Message',
+                  hintStyle: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+                cursorColor: Colors.black,
+                keyboardType: TextInputType.multiline,
+                validator: (String? value) {
+                  if (value!.isEmpty) {
+                    return 'phone must\'t empty';
+                  } else if (value.length > 11) {
+                    return 'phone is too short';
+                  }
+                  return null;
+                },
+                onSaved: (value) {},
               ),
-            ),
-            cursorColor: Colors.black,
-            keyboardType: TextInputType.multiline,
-            validator: (String? value) {
-              if (value!.isEmpty) {
-                return 'phone must\'t empty';
-              } else if (value.length > 11) {
-                return 'phone is too short';
-              }
-              return null;
-            },
-            onSaved: (value) {},
+            ],
           );
         },
       ),

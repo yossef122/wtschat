@@ -1,7 +1,10 @@
+import 'package:chatapp/Features/Home_App/Presentation/View_model/ChatUsers/chat_users_cubit.dart';
+import 'package:chatapp/Features/splash/presentation/views/splash.dart';
 import 'package:chatapp/core/bloc_observe/bloc_observe.dart';
 import 'package:chatapp/core/styles/colors.dart';
 import 'package:chatapp/core/utils/Constants.dart';
-import 'package:chatapp/core/utils/Routing.dart';
+
+// import 'package:chatapp/core/utils/Routing.dart';
 import 'package:chatapp/core/utils/WebService_locator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,7 +18,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseAuth.instance.authStateChanges().listen((userAuth) {
-    user =userAuth;
+    user = userAuth;
   });
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -31,15 +34,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      routerDelegate: RouterBuild.router.routerDelegate,
+    return BlocProvider<ChatUsersCubit>.value(
+      value:   getIt.get<ChatUsersCubit>()..getAllUsers(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        /*routerDelegate: RouterBuild.router.routerDelegate,
       routeInformationProvider: RouterBuild.router.routeInformationProvider,
       routeInformationParser: RouterBuild.router.routeInformationParser,
+      */
+        home: const SplashScreen(),
+
+
+      ),
     );
   }
 }

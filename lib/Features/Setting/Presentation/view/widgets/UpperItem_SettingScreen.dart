@@ -1,6 +1,8 @@
+import 'package:chatapp/Features/Profile_photo/presentation/view/Profile_photo_screen.dart';
 import 'package:chatapp/core/styles/colors.dart';
 import 'package:chatapp/core/utils/Routing.dart';
 import 'package:chatapp/core/utils/assets.dart';
+import 'package:chatapp/core/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,7 +21,9 @@ class UpperItemSettingScreen extends StatelessWidget {
         .width;
     return GestureDetector(
       onTap: (){
-        GoRouter.of(context).push(RouterBuild.kProfilePhotoScreen);
+        navigator(context, const ProfilePhotoScreen());
+
+        // GoRouter.of(context).push(RouterBuild.kProfilePhotoScreen);
       },
       child: Row(
         children: [

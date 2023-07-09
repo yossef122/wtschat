@@ -1,5 +1,8 @@
+import 'package:chatapp/Features/Home_App/Presentation/View/HomeScreen.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view/phone_authentication_screen.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:chatapp/core/utils/Routing.dart';
+import 'package:chatapp/core/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
@@ -17,9 +20,15 @@ class _SplashScreenBodyState extends State<SplashScreenBody> {
     super.initState();
     Future.delayed(
       const Duration(seconds: 3),
-      () => GoRouter.of(context).push(user == null
+      () => /*GoRouter.of(context).push(user == null
           ? RouterBuild.kPhoneAuthenticationScreen
-          : RouterBuild.kHomeScreen),
+          : RouterBuild.kHomeScreen),*/
+          user == null
+              ? navigator(context, const PhoneAuthenticationScreen())
+              : navigator(
+                  context,
+                  const HomeScreen(),
+                ),
     );
   }
 

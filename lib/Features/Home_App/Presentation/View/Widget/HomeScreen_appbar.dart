@@ -1,6 +1,8 @@
 import 'package:chatapp/Features/Home_App/Presentation/View/HomeScreen.dart';
 import 'package:chatapp/Features/Home_App/Presentation/View/HomeScreen.dart';
+import 'package:chatapp/Features/Setting/Presentation/view/setting_screen.dart';
 import 'package:chatapp/core/utils/Routing.dart';
+import 'package:chatapp/core/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -41,7 +43,9 @@ class HomeScreenAppBar extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              GoRouter.of(context).push(RouterBuild.kSettingScreen);
+              navigator(context, const SettingScreen());
+
+              // GoRouter.of(context).push(RouterBuild.kSettingScreen);
             },
             icon: Icon(
               Icons.more_vert_sharp,

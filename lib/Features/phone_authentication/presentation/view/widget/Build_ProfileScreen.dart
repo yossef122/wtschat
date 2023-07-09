@@ -1,10 +1,12 @@
 // ignore_for_file: camel_case_types, must_be_immutable
 
+import 'package:chatapp/Features/Home_App/Presentation/View/HomeScreen.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view_model/SignIn_CloudFireStore/sign_user_cubit.dart';
 import 'package:chatapp/core/styles/colors.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:chatapp/core/utils/Routing.dart';
 import 'package:chatapp/core/utils/assets.dart';
+import 'package:chatapp/core/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -21,7 +23,9 @@ class profileScreenBody extends StatelessWidget {
     return BlocConsumer<SignUserCubit, SignUserState>(
       listener: (context, state) {
         if (state is UserCreateSuccessStates) {
-          GoRouter.of(context).push(RouterBuild.kHomeScreen);
+          // GoRouter.of(context).push(RouterBuild.kHomeScreen);
+          navigator(context, const HomeScreen());
+
         }
       },
       builder: (context, state) {

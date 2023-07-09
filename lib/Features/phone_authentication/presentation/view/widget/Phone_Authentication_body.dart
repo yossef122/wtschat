@@ -1,3 +1,4 @@
+import 'package:chatapp/Features/phone_authentication/presentation/view/Verifying_code.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view/widget/build_introText.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view/widget/build_phoneFormField.dart';
 import 'package:chatapp/Features/phone_authentication/presentation/view/widget/verified_button.dart';
@@ -29,7 +30,7 @@ class PhoneAuthenticationScreenBody extends StatelessWidget {
               const SizedBox(
                 height: 110,
               ),
-              BuildPhoneFormField(),
+              const BuildPhoneFormField(),
               const SizedBox(
                 height: 70,
               ),
@@ -65,8 +66,13 @@ class BuildPhoneNumberSubmited extends StatelessWidget {
           return loadingWidget(context);
           } else if (state is PhoneAuthSuccessState) {
             Navigator.pop(context);
-            GoRouter.of(context)
-              .push(RouterBuild.kVerifyingCode, extra: phoneNumber);
+            //
+
+            /*GoRouter.of(context)
+              .push(RouterBuild.kVerifyingCode, extra: phoneNumber);*/
+
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) =>const VerifyingCode()));
         } else if (state is PhoneAuthErrorState) {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(

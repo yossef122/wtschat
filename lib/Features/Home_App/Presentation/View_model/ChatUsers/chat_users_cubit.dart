@@ -20,7 +20,7 @@ class ChatUsersCubit extends Cubit<ChatUsersState> {
       FirebaseFirestore.instance.collection('users').get().then((value) {
         value.docs.forEach((element) {
           if (element.id != user!.uid) {
-            // print(element.id);
+            print(element.id);
             allUsers.add(UserData.fromJson(element.data()));
           }
         });

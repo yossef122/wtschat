@@ -8,9 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatDetailsScreenBody extends StatelessWidget {
-   ChatDetailsScreenBody({Key? key, required this.receiverId})
+   ChatDetailsScreenBody({Key? key, required this.receiverId,required this.receiverName})
       : super(key: key);
   String? receiverId;
+  String? receiverName;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class ChatDetailsScreenBody extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const ChatAppbar(),
+            ChatAppbar(receiverName:receiverName,),
             const Spacer(),
             SingleChildScrollView(
               child: Column(

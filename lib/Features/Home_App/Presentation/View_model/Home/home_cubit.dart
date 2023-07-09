@@ -1,17 +1,18 @@
 import 'dart:io';
-
-import 'package:bloc/bloc.dart';
 import 'package:chatapp/Features/Home_App/Data/story_model.dart';
 import 'package:chatapp/Features/phone_authentication/data/Model/UserData.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_storage/firebase_storage.dart'/* as firebase_storage*/;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
+
+  static HomeCubit get(context) => BlocProvider.of(context);
 
   story_model? storyModel;
   UserData? profileModel;
@@ -24,11 +25,11 @@ class HomeCubit extends Cubit<HomeState> {
     final pickerFile = await storyPicker.pickImage(source: ImageSource.gallery);
 
     if (pickerFile != null) {
-      // // // print(pickerFile.path);
+      print(pickerFile.path);
       storyImage = File(pickerFile.path);
       emit(PickedStoryImageSuccessState());
     } else {
-      // // // print('No Image Selected');
+      print('No Image Selected');
       emit(PickedStoryImageErrorState());
     }
   }
@@ -39,7 +40,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<String> stories = [];
   void uploadStoryImage() {
     emit(UploadStoryLoadingState());
-    firebase_storage.FirebaseStorage.instance
+    FirebaseStorage.instance
         .ref()
         .child(Uri.file(storyImage!.path).pathSegments.last)
         .putFile(storyImage!)
@@ -47,16 +48,16 @@ class HomeCubit extends Cubit<HomeState> {
       value.ref.getDownloadURL().then((value) {
         storyImageUrl = value;
         stories.add(value);
-        // // print(storyImageUrl);
+        print(storyImageUrl);
         emit(UploadStorySuccessState());
         getStory();
-      }).catchError((error) {
-        // print(error.toString());
+      }).catchError((Error) {
+        print(Error.toString());
         emit(UploadStoryErrorState());
       });
       // updateUserImage();
-    }).catchError((error) {
-      // print(error.toString());
+    }).catchError((Error) {
+      print(Error.toString());
       emit(UploadStoryErrorState2());
     });
   }
@@ -71,7 +72,7 @@ class HomeCubit extends Cubit<HomeState> {
       text,
       dateTime,
       photo,
-      storyId,
+      storyId
     );
     FirebaseFirestore.instance
         .collection('users')
@@ -82,7 +83,7 @@ class HomeCubit extends Cubit<HomeState> {
         .then((value) {
       uploadStoryImage();
     }).catchError((onError) {
-      // print(onError.toString());
+      print(onError.toString());
       emit(CreateStoryErrorState(onError.toString()));
     });
   }
@@ -103,7 +104,7 @@ class HomeCubit extends Cubit<HomeState> {
       });
       emit(GetStorySuccessState());
     }).catchError((onError) {
-      //  print(onError.toString());
+      print(onError.toString());
       emit(GetStoryErrorState(onError.toString()));
     });
   }

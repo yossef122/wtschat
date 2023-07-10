@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyStatusItem extends StatelessWidget {
-  const MyStatusItem(
-      {Key? key, required this.cubit, required this.storyImage})
+  const MyStatusItem({Key? key, required this.cubit, required this.storyImage})
       : super(key: key);
 
   final HomeCubit cubit;
@@ -31,8 +30,8 @@ class MyStatusItem extends StatelessWidget {
               InkWell(
                 onTap: () {
                   navigator(
-                     context,
-                     const UploadedStories(),
+                    context,
+                    const UploadedStories(),
                   );
                 },
                 child: CircleAvatar(
@@ -48,7 +47,7 @@ class MyStatusItem extends StatelessWidget {
               ),
               Padding(
                 padding:
-                EdgeInsets.only(left: width * 0.03, top: height * 0.01),
+                    EdgeInsets.only(left: width * 0.03, top: height * 0.01),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -66,10 +65,12 @@ class MyStatusItem extends StatelessWidget {
               const Spacer(),
               Padding(
                 padding:
-                EdgeInsets.only(top: height * 0.01, right: width * 0.03),
+                    EdgeInsets.only(top: height * 0.01, right: width * 0.03),
                 child: CircleAvatar(
                   radius: height * 0.03,
-                  backgroundColor: Colors.grey.withOpacity(0.5),
+                  backgroundColor: Colors.grey.withOpacity(
+                    0.5,
+                  ),
                   child: IconButton(
                     onPressed: () {
                       cubit.getStoryImage();
@@ -86,14 +87,16 @@ class MyStatusItem extends StatelessWidget {
                   top: height * 0.01,
                 ),
                 child: CircleAvatar(
-                    radius: height * 0.03,
-                    backgroundColor: Colors.grey.withOpacity(0.5),
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.edit,
-                          size: height * 0.035,
-                        ))),
+                  radius: height * 0.03,
+                  backgroundColor: Colors.grey.withOpacity(0.5),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.edit,
+                      size: height * 0.035,
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

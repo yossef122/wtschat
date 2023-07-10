@@ -3,7 +3,7 @@ import 'package:chatapp/Features/Home_App/Data/story_model.dart';
 import 'package:chatapp/Features/phone_authentication/data/Model/UserData.dart';
 import 'package:chatapp/core/utils/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart'/* as firebase_storage*/;
+import 'package:firebase_storage/firebase_storage.dart' /* as firebase_storage*/;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -38,6 +38,7 @@ class HomeCubit extends Cubit<HomeState> {
   String storyImageUrl = '';
 
   List<String> stories = [];
+
   void uploadStoryImage() {
     emit(UploadStoryLoadingState());
     FirebaseStorage.instance
@@ -49,8 +50,8 @@ class HomeCubit extends Cubit<HomeState> {
         storyImageUrl = value;
         stories.add(value);
         print(storyImageUrl);
-        emit(UploadStorySuccessState());
         getStory();
+        emit(UploadStorySuccessState());
       }).catchError((Error) {
         print(Error.toString());
         emit(UploadStoryErrorState());
@@ -66,14 +67,9 @@ class HomeCubit extends Cubit<HomeState> {
     required String text,
     required String photo,
     String? storyId,
-    DateTime? dateTime,
+    String? dateTime,
   }) {
-    story_model model = story_model(
-      text,
-      dateTime,
-      photo,
-      storyId
-    );
+    story_model model = story_model(text, dateTime, photo, storyId);
     FirebaseFirestore.instance
         .collection('users')
         .doc(user!.uid)
@@ -82,6 +78,7 @@ class HomeCubit extends Cubit<HomeState> {
         .set(model.toMap())
         .then((value) {
       uploadStoryImage();
+      emit(CreateStorySuccessState());
     }).catchError((onError) {
       print(onError.toString());
       emit(CreateStoryErrorState(onError.toString()));
@@ -90,7 +87,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   List<story_model> storyList = [];
 
-  void getStory() {
+/*  void getStory() {
     emit(GetStoryLoadingState());
     FirebaseFirestore.instance
         .collection('users')
@@ -106,6 +103,23 @@ class HomeCubit extends Cubit<HomeState> {
     }).catchError((onError) {
       print(onError.toString());
       emit(GetStoryErrorState(onError.toString()));
+    });
+  }*/
+
+  void getStory() {
+    emit(GetStoryLoadingState());
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .collection('stories')
+        .snapshots()
+        .listen((event) {
+          print(event.docs);
+     /* storyList = [];
+      event.docs.forEach((element) {
+        storyList.add(story_model.fromJson(element.data()));
+      });*/
+      emit(GetStorySuccessState());
     });
   }
 }

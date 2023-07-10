@@ -17,7 +17,7 @@ class StoryScreenBody extends StatelessWidget {
     var cubit = HomeCubit.get(context);
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
-        if (state is /*PickedStoryImageSuccessState*/PickedStoryImageSuccessState) {
+        if (state is PickedStoryImageSuccessState) {
           navigator(
              context,
             ImageStory(

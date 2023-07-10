@@ -1,6 +1,6 @@
 class story_model {
   String? photo;
-  DateTime? dateTime;
+  String? dateTime;
   String? text;
   String? storyId;
 

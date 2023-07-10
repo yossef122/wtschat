@@ -60,6 +60,7 @@ class ChatSendMessage extends StatelessWidget {
                                   receiverId: receiverId,
                                   text: textEditingController.text,
                                   dateTime: DateTime.now().toString());
+                              textEditingController.clear();
                             },
                             icon: const Icon(
                               Icons.send,

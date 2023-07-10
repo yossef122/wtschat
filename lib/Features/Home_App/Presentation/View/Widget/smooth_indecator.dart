@@ -7,20 +7,24 @@ class SmoothIndicator extends StatelessWidget {
     required this.pageController,
     required this.length,
   });
+
   final PageController pageController;
   final dynamic length;
+
   @override
   Widget build(BuildContext context) {
     return SmoothPageIndicator(
-        controller: pageController,
-        count: length,
-        effect: ExpandingDotsEffect(
-            dotColor: Colors.grey.withOpacity(0.5),
-            activeDotColor: Colors.white,
-            dotHeight: 7,
-            dotWidth: 20,
-            expansionFactor: 5,
-            radius: 10,
-            spacing: 5));
+      controller: pageController,
+      count: length,
+      effect: ExpandingDotsEffect(
+        dotColor: Colors.grey.withOpacity(0.5),
+        activeDotColor: Colors.white,
+        dotHeight: 7,
+        dotWidth: 20,
+        expansionFactor: 5,
+        radius: 10,
+        spacing: 5,
+      ),
+    );
   }
 }

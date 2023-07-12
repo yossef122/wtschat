@@ -38,8 +38,9 @@ class StoryScreenBody extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  top: height * 0.035,
+                  top: height * 0.005,
                   left: width * 0.035,
+                  bottom: height * 0.005
                 ),
                 child: Text(
                   'VIEWED UPDATES',

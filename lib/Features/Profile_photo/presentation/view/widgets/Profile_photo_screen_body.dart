@@ -1,23 +1,33 @@
+import 'package:chatapp/Features/phone_authentication/data/Model/UserData.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view_model/SignIn_CloudFireStore/sign_user_cubit.dart';
 import 'package:chatapp/core/styles/colors.dart';
+import 'package:chatapp/core/utils/Constants.dart';
 import 'package:chatapp/core/utils/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfilePhotoScreenBody extends StatelessWidget {
-  const ProfilePhotoScreenBody({Key? key}) : super(key: key);
+  ProfilePhotoScreenBody({Key? key, required this.userData}) : super(key: key);
+  UserData userData;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        ChangeProfilePhoto(),
-        EditProfileList(),
+      children: [
+        ChangeProfilePhoto(
+          photo: userData.personalPhoto ?? "assets/Images/no photo whats.png",
+        ),
+        EditProfileList(
+          userdata: userData,
+        ),
       ],
     );
   }
 }
 
 class ChangeProfilePhoto extends StatelessWidget {
-  const ChangeProfilePhoto({Key? key}) : super(key: key);
+  ChangeProfilePhoto({Key? key, required this.photo}) : super(key: key);
+  String photo;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +42,9 @@ class ChangeProfilePhoto extends StatelessWidget {
             height: height * .2,
             child: CircleAvatar(
               radius: width * .2,
-              backgroundImage: const AssetImage(AppImage.chatPhoto),
+              backgroundImage: photo != "assets/Images/no photo whats.png"
+                  ? NetworkImage(photo) as ImageProvider
+                  : AssetImage(photo),
             ),
           ),
           CircleAvatar(
@@ -50,7 +62,8 @@ class ChangeProfilePhoto extends StatelessWidget {
 }
 
 class EditProfileList extends StatelessWidget {
-  const EditProfileList({Key? key}) : super(key: key);
+  EditProfileList({Key? key, required this.userdata}) : super(key: key);
+  UserData userdata;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +76,11 @@ class EditProfileList extends StatelessWidget {
           return EditProfileItem(
             icon: editProfileIcon[index],
             upperText: editProfileUpperText[index],
-            lowerText: editProfileLowerText[index],
+            lowerText: index == 0
+                ? userdata.name
+                : index == 1
+                    ? userdata.bio
+                    : userdata.phoneNumber, index: index,
           );
         },
         separatorBuilder: (context, index) {
@@ -85,11 +102,14 @@ class EditProfileItem extends StatelessWidget {
       {Key? key,
       required this.icon,
       required this.upperText,
+      required this.index,
       required this.lowerText})
       : super(key: key);
   final IconData? icon;
   final String? upperText;
   final String? lowerText;
+  final int index;
+
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +168,7 @@ class EditProfileItem extends StatelessWidget {
                             backgroundColor: Colors.transparent,
                             context: context,
                             builder: (builder) => AttachmentContainer(
-                              textFormFieldLabel: upperText,
+                              textFormFieldLabel: upperText, index: index,
                             ),
                           );
                         },
@@ -164,41 +184,61 @@ class EditProfileItem extends StatelessWidget {
 }
 
 class AttachmentContainer extends StatelessWidget {
-  AttachmentContainer({Key? key, required this.textFormFieldLabel})
+  AttachmentContainer({Key? key, required this.textFormFieldLabel,required this.index})
       : super(key: key);
   String? textFormFieldLabel;
+  var textEditingController=TextEditingController();
+  int index;
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    return Padding(
-      padding: EdgeInsets.only(bottom: height * .374),
-      child: SizedBox(
-        height: 150,
-        width: MediaQuery.of(context).size.width,
-        child: Card(
-          margin: const EdgeInsets.all(20),
-          child: Padding(
-            padding: const EdgeInsets.all(0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(right: 10, left: 10),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        labelText: textFormFieldLabel,
-                        prefix: const SizedBox(width: 10),
-                        hintText: "Enter your $textFormFieldLabel",
-                        disabledBorder: InputBorder.none),
-                  ),
+    return BlocConsumer<SignUserCubit, SignUserState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        var cubit = SignUserCubit.get(context);
+        return Padding(
+          padding: EdgeInsets.only(bottom: height * .374),
+          child: SizedBox(
+            height: 150,
+            width: MediaQuery.of(context).size.width,
+            child: Card(
+              margin: const EdgeInsets.all(20),
+              child: Padding(
+                padding: const EdgeInsets.all(0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10, left: 10),
+                      child: TextFormField(
+                        controller: textEditingController,
+                        decoration: InputDecoration(
+                            labelText: textFormFieldLabel,
+                            prefix: const SizedBox(width: 10),
+                            hintText: "Enter your $textFormFieldLabel",
+                            disabledBorder: InputBorder.none),
+                      ),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          /*cubit.editUserData(
+                              name:index==0?textEditingController.text: cubit.userData!.name!,
+                              photo:  cubit.userData!.personalPhoto!,
+                              uId: user!.uid,
+                              phone:  cubit.userData!.phoneNumber!,
+                              bio: index==1?textEditingController.text: cubit.userData!.bio!);*/
+                        },
+                        child: const Text("save"))
+                  ],
                 ),
-                TextButton(onPressed: () {}, child: const Text("save"))
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -212,9 +252,4 @@ List<String> editProfileUpperText = [
   'Name',
   'About',
   'Phone',
-];
-List<String> editProfileLowerText = [
-  'Joe',
-  'hey .................',
-  '+20115698651',
 ];

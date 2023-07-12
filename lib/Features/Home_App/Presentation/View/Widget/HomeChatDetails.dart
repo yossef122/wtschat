@@ -19,14 +19,14 @@ class HomeChat extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return GestureDetector(
+    return  GestureDetector(
       onTap: () {
         // print("1 ${user!.phoneNumber}");
         // ChatUsersCubit.get(context).changeReceiverUserId(ChatUsersCubit.get(context).allUsers[index].uId);
         ChatCubit.get(context).getMessage(receiverId: user!.uId);
 
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) =>  ChatDetailsScreen(receiverId: user!.uId, receiverName: user!.name,)),
+          MaterialPageRoute(builder: (context) =>  ChatDetailsScreen(/*receiverId: user!.uId, receiverName: user!.name,*/ receiverData: user,)),
         );
         // GoRouter.of(context).push(RouterBuild.kChatDetailsScreen, extra: user);
       },
@@ -43,7 +43,7 @@ class HomeChat extends StatelessWidget {
                 height: height * .07,
                 child: CircleAvatar(
                   radius: height * .037,
-                  backgroundImage: const AssetImage(AppImage.chatPhoto),
+                  backgroundImage:  NetworkImage(user!.personalPhoto!),
                 ),
               ),
               const SizedBox(
@@ -101,7 +101,7 @@ class HomeChat extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            CircleAvatar(
+                            /*CircleAvatar(
                               backgroundColor: CupertinoColors.systemGreen,
                               radius: 10,
                               child: Text(
@@ -112,7 +112,7 @@ class HomeChat extends StatelessWidget {
                                     color: Colors.white,
                                     overflow: TextOverflow.ellipsis),
                               ),
-                            ),
+                            ),*/
                           ],
                         ),
                       ],

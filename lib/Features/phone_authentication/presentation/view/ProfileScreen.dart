@@ -10,15 +10,12 @@ class SignInProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SignUserCubit>.value(
-      value: getIt.get<SignUserCubit>(),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: defualtColor1(),
-          title: const Text('profile'),
-        ),
-        body: profileScreenBody(),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: defualtColor1(),
+        title: const Text('profile'),
       ),
+      body: profileScreenBody(),
     );
   }
 }

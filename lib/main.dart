@@ -1,6 +1,7 @@
 import 'package:chatapp/Features/Home_App/Presentation/View/Widget/HomeChatDetails.dart';
 import 'package:chatapp/Features/Home_App/Presentation/View_model/ChatUsers/chat_users_cubit.dart';
 import 'package:chatapp/Features/Home_App/Presentation/View_model/Home/home_cubit.dart';
+import 'package:chatapp/Features/phone_authentication/presentation/view_model/SignIn_CloudFireStore/sign_user_cubit.dart';
 import 'package:chatapp/Features/splash/presentation/views/splash.dart';
 import 'package:chatapp/core/bloc_observe/bloc_observe.dart';
 import 'package:chatapp/core/styles/colors.dart';
@@ -40,8 +41,15 @@ class MyApp extends StatelessWidget {
         BlocProvider<ChatUsersCubit>.value(
           value: getIt.get<ChatUsersCubit>()..getAllUsers(),
         ),
-        BlocProvider<HomeCubit>.value(
+       user!=null? BlocProvider<HomeCubit>.value(
           value: getIt.get<HomeCubit>()..getStory(),
+        ):BlocProvider<HomeCubit>.value(
+         value: getIt.get<HomeCubit>(),
+       ),
+        user!=null? BlocProvider<SignUserCubit>.value(
+          value: getIt.get<SignUserCubit>()..getUserInfo(),
+        ):BlocProvider<SignUserCubit>.value(
+          value: getIt.get<SignUserCubit>(),
         ),
       ],
       child: MaterialApp(

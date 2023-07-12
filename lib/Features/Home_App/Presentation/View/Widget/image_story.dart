@@ -113,8 +113,8 @@ class ImageStory extends StatelessWidget {
             animation: StyledToastAnimation.slideFromLeftFade,
             reverseAnimation: StyledToastAnimation.fade,
             position: StyledToastPosition.center,
-            animDuration: Duration(seconds: 1),
-            duration: Duration(seconds: 4),
+            animDuration: const Duration(seconds: 1),
+            duration: const Duration(seconds: 4),
             backgroundColor: Colors.green,
             borderRadius: BorderRadius.circular(height * 0.02),
             textStyle: TextStyle(
@@ -141,11 +141,11 @@ class ImageStory extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: FileImage(storyImage!) as ImageProvider,
+                      image: FileImage(storyImage!),
                     )),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 10, right: 10, left: 10),
+                padding: const EdgeInsets.only(bottom: 10, right: 10, left: 10),
                 child: textField(
                   controller: textController,
                   context: context,

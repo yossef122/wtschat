@@ -13,17 +13,18 @@ class ChatUsersCubit extends Cubit<ChatUsersState> {
   static ChatUsersCubit get(context) => BlocProvider.of(context);
 
   List<UserData> allUsers = [];
+  UserData? userData;
 
   void getAllUsers() {
     if (allUsers.isEmpty) {
       emit(GetAllUsersLoadingState());
       FirebaseFirestore.instance.collection('users').get().then((value) {
-        value.docs.forEach((element) {
+        for (var element in value.docs) {
           if (element.id != user!.uid) {
-            print(element.id);
+            // print(element.id);
             allUsers.add(UserData.fromJson(element.data()));
           }
-        });
+        }
 
         emit(GetAllUsersSuccessState());
       }).catchError((error) {

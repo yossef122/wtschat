@@ -1,4 +1,5 @@
 import 'package:chatapp/Features/Home_App/Presentation/View/HomeScreen.dart';
+import 'package:chatapp/Features/phone_authentication/data/Model/UserData.dart';
 import 'package:chatapp/core/styles/colors.dart';
 
 // import 'package:chatapp/core/utils/Routing.dart';
@@ -8,8 +9,10 @@ import 'package:flutter/material.dart';
 // import 'package:go_router/go_router.dart';
 
 class ChatAppbar extends StatelessWidget {
-  ChatAppbar({Key? key, required this.receiverName}) : super(key: key);
-  String? receiverName;
+  ChatAppbar({Key? key, required this.receiverData}) : super(key: key);
+
+  // String? receiverName;
+  UserData? receiverData;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,10 @@ class ChatAppbar extends StatelessWidget {
               height: height * .06,
               child: CircleAvatar(
                 radius: height * .027,
-                backgroundImage: const AssetImage(AppImage.chatPhoto),
+                backgroundImage: receiverData!.personalPhoto == null
+                    ? const AssetImage(AppImage.chatPhoto)
+                    : NetworkImage(receiverData!.personalPhoto!)
+                        as ImageProvider,
               ),
             ),
             const SizedBox(
@@ -46,9 +52,9 @@ class ChatAppbar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                 width: width * .5,
+                  width: width * .5,
                   child: Text(
-                    receiverName!,
+                    receiverData!.name!,
                     style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 20,
@@ -57,7 +63,7 @@ class ChatAppbar extends StatelessWidget {
                   ),
                 ),
                 const Text(
-                  'Message yourself',
+                  'Message your friend',
                   style: TextStyle(
                       fontWeight: FontWeight.normal,
                       fontSize: 15,

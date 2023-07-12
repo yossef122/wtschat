@@ -21,10 +21,12 @@ class ListViewOfHomeChat extends StatelessWidget {
                 );
               },
               itemBuilder: (BuildContext context, int index) {
-                return HomeChat(
-                  user: ChatUsersCubit.get(context).allUsers[index],
-                  // name: "jo",
-                );
+                return ChatUsersCubit.get(context).allUsers.isEmpty
+                    ? Container()
+                    : HomeChat(
+                        user: ChatUsersCubit.get(context).allUsers[index],
+                        // name: "jo",
+                      );
               },
               itemCount: 1,
             ),

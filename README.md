@@ -1,6 +1,6 @@
 # chatapp
 
-A new Flutter project.
+a chat app which you can send message , create story and change photo
 
 ## Getting Started
 
